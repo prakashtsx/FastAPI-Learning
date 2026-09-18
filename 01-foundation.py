@@ -27,3 +27,15 @@ def about():
     return {"message": "This is a sample order service for Swiggy",
             "author": "Prakash",
             }
+
+@app.get("/debug/request-info")
+async def request_info(request: Request):
+    """Inspects the raw request object"""
+
+    return {
+        "method": request.method,
+        "url": str(request.url),
+        "headers": dict(request.headers),
+        "query_params": dict(request.query_params),
+        "path_params": request.path_params,
+    }
